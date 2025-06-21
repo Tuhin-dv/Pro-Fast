@@ -4,6 +4,7 @@ import ServicesCard from '../components/ServicesCard'
 import HowItWork from '../components/HowItWork'
 import BrandsMarquee from '../brandsMarquee/BrandsMarquee'
 import FeatureCards from '../components/FeatureCards'
+import Merchant from '../components/Merchant'
 
 function Home() {
   return (
@@ -15,7 +16,8 @@ function Home() {
        <BrandsMarquee></BrandsMarquee>
      </div>
       <FeatureCards></FeatureCards>
-
+      <Merchant></Merchant>
+      
       <h1>home</h1>
       </div>
   )
