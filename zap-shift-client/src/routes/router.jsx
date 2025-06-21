@@ -4,6 +4,9 @@ import MainLayout from "../root/MainLayout";
 import Home from "../pages/Home";
 import Services from "../pages/Services";
 import Coverage from "../pages/Coverage";
+import AboutUs from "../pages/AboutUs";
+import Pricing from "../pages/Pricing";
+import BeRider from "../pages/BeRider";
 
 export const router = createBrowserRouter([
  {
@@ -21,6 +24,21 @@ export const router = createBrowserRouter([
         {
             path: '/coverage',
             Component: Coverage
+        }
+        ,
+        {
+            path: '/about',
+            Component: AboutUs
+        }
+        ,
+        {
+            path: '/pricing',
+            Component: Pricing
+        }
+        ,
+        {
+            path: '/beRider',
+            Component: BeRider
         }
     ]
  }
