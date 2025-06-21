@@ -7,7 +7,9 @@ function MainLayout() {
     return (
         <div>
             <Navbar></Navbar>
-            <Outlet></Outlet>
+            <div className=' max-w-[1680px] mx-auto'>
+                <Outlet></Outlet>
+            </div>
             <Footer></Footer>
         </div>
     )

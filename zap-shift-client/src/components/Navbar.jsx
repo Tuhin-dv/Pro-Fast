@@ -3,20 +3,20 @@ import { NavLink } from 'react-router'
 import ProFastLogo from '../sitelogo/ProFastLogo'
 
 
-
 const navItems = <>
-
-  <li><NavLink to='/'>Home</NavLink></li>
-  <li><NavLink to='/services'>Services</NavLink></li>
-  <li><NavLink to='/coverage'>Coverage</NavLink></li>
-  <li><NavLink to='/about'>About US</NavLink></li>
-  <li><NavLink to='/pricing'>Pricing</NavLink></li>
-  <li><NavLink to='/beRider'>Be a Rider</NavLink></li>
+  <div className='font-semibold flex gap-3'>
+    <li><NavLink to='/'>Home</NavLink></li>
+    <li><NavLink to='/services'>Services</NavLink></li>
+    <li><NavLink to='/coverage'>Coverage</NavLink></li>
+    <li><NavLink to='/about'>About US</NavLink></li>
+    <li><NavLink to='/pricing'>Pricing</NavLink></li>
+    <li><NavLink to='/beRider'>Be a Rider</NavLink></li>
+  </div>
 </>
 function Navbar() {
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm">
+    <div className='px-5 '>
+      <div className="navbar rounded-xl mb-5 p-4 bg-white shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

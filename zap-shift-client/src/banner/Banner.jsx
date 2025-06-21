@@ -11,15 +11,15 @@ function Banner() {
             <Carousel autoPlay={true} infiniteLoop showThumbs={false}>
                 <div>
                     <img src={img1} alt="Slide 1" />
-                    <p className="legend">Slide 1</p>
+                  
                 </div>
                 <div>
                     <img src={img2} alt="Slide 2" />
-                    <p className="legend">Slide 2</p>
+                   
                 </div>
                 <div>
                     <img src={img3} alt="Slide 3" />
-                    <p className="legend">Slide 3</p>
+                   
                 </div>
             </Carousel>
         </div>
