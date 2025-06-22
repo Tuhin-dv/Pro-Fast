@@ -5,6 +5,8 @@ import HowItWork from '../components/HowItWork'
 import BrandsMarquee from '../brandsMarquee/BrandsMarquee'
 import FeatureCards from '../components/FeatureCards'
 import Merchant from '../components/Merchant'
+import TestimonialSlider from '../components/TestimonialSlider'
+import FAQ from '../components/FAQ'
 
 function Home() {
   return (
@@ -17,7 +19,8 @@ function Home() {
      </div>
       <FeatureCards></FeatureCards>
       <Merchant></Merchant>
-      
+      <TestimonialSlider></TestimonialSlider>
+      <FAQ></FAQ>
       <h1>home</h1>
       </div>
   )

@@ -11,7 +11,7 @@ function Merchant() {
                     </p>
                     <div className='flex gap-4'>
                         <button className='bg-[#CAEB66] font-bold text-xl rounded-full py-4 text-black px-8'>Become a Merchant</button>
-                        <button className=' border border-[#CAEB66] text-[#CAEB66] btn-outline font-bold text-xl rounded-full py-4  px-8'>Become a Merchant</button>
+                        <button className=' border border-[#CAEB66] text-[#CAEB66] btn-outline font-bold text-xl rounded-full py-4  px-8'>Earn with Profast Courier</button>
                     </div>
                 </div>
                 <div className='flex-1'>

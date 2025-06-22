@@ -8,6 +8,6 @@ export default {
     extend: {},
   },
   plugins: [
-    require('daisyui'),
+    require('daisyui'), // optional, you're already using it
   ],
 }
