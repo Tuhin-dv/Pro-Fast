@@ -1,7 +1,5 @@
-import React from 'react'
 import { Link, NavLink } from 'react-router'
 import ProFastLogo from '../sitelogo/ProFastLogo'
-
 
 const navItems = <>
   <div className='font-semibold flex gap-3'>
@@ -13,7 +11,10 @@ const navItems = <>
     <li><NavLink to='/beRider'>Be a Rider</NavLink></li>
   </div>
 </>
+
+
 function Navbar() {
+
   return (
     <div className='px-5 '>
       <div className="navbar rounded-xl mb-5 p-4 bg-white shadow-sm">
@@ -38,6 +39,7 @@ function Navbar() {
             {navItems}
           </ul>
         </div>
+       
         <div className="flex gap-4 navbar-end">
          <Link to='/login'>Login</Link>
          <Link to='/register'>Register</Link> 
