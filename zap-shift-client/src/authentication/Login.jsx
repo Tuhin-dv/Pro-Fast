@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { useForm } from 'react-hook-form'
+import Social from '../components/socialBtn/Social'
 function Login() {
 
   const { register, handleSubmit } = useForm()
@@ -30,13 +31,14 @@ function Login() {
           </div>
           <div className="space-y-2">
             <div>
-              <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50">Sign in</button>
+              <button type="submit" className="w-full bg-[#CAEB66] px-8 py-3 font-bold rounded-md ">Sign in</button>
             </div>
             <p className="px-6 text-sm text-center dark:text-gray-600">Don't have an account yet?
               <Link to='/register'> Register</Link>
             </p>
           </div>
         </form>
+        <Social></Social>
       </div>
     </div>
   )

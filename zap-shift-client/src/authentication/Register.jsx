@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import Social from '../components/socialBtn/Social'
 
 function Register() {
   return (
@@ -33,6 +34,7 @@ function Register() {
             </p>
           </div>
         </form>
+        <Social></Social>
       </div>
     </div>
   )

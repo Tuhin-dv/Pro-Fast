@@ -10,6 +10,7 @@ import BeRider from "../pages/BeRider";
 import AuthLayout from "../AuthLayout/AuthLayout";
 import Login from "../authentication/Login";
 import Register from "../authentication/Register";
+import AddParcelForm from "../pages/AddParcelForm";
 
 export const router = createBrowserRouter([
  {
@@ -26,7 +27,8 @@ export const router = createBrowserRouter([
         },
         {
             path: '/coverage',
-            Component: Coverage
+            Component: Coverage,
+            loader: ()=>fetch('../../public/ServicesCenter.json')
         }
         ,
         {
@@ -42,6 +44,10 @@ export const router = createBrowserRouter([
         {
             path: '/beRider',
             Component: BeRider
+        },
+        {
+            path: '/addpercel',
+            Component: AddParcelForm
         }
     ]
  },
