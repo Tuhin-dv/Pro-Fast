@@ -1,40 +1,54 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import locationData from '../../public/ServicesCenter.json';
+import axios from 'axios';
+import { AuthContext } from '../Contexts/AuthContext/AuthContext';
 
 const MySwal = withReactContent(Swal);
 
 export default function AddParcelForm() {
-  const { register, handleSubmit, watch, reset, setValue, formState: { errors } } = useForm();
-  const [cost, setCost] = useState(0);
-  const [parcelData, setParcelData] = useState(null);
+  const { user } = useContext(AuthContext);
 
+  const { register, handleSubmit, watch, reset, setValue, formState: { errors } } = useForm();
   const isDocument = watch("parcelType") === "Document";
 
   const [senderDistricts, setSenderDistricts] = useState([]);
   const [receiverDistricts, setReceiverDistricts] = useState([]);
 
+  // Calculate cost based on type, weight and same city or not
   const calculateCost = (data) => {
     const isSameCity = data.senderServiceCenter === data.receiverServiceCenter;
-    const withinCity = isSameCity;
-
     if (data.parcelType === "Document") {
-      return withinCity ? 60 : 80;
+      return isSameCity ? 60 : 80;
     } else {
       const weight = parseFloat(data.parcelWeight || 0);
       if (weight <= 3) {
-        return withinCity ? 110 : 150;
+        return isSameCity ? 110 : 150;
       } else {
         const extraWeight = weight - 3;
         const extraCharge = extraWeight * 40;
-        return withinCity ? (110 + extraCharge) : (150 + extraCharge + 40);
+        return isSameCity ? (110 + extraCharge) : (150 + extraCharge + 40);
       }
     }
   };
 
+  // POST to backend
+  const handleConfirm = async (finalData) => {
+    try {
+      const response = await axios.post('http://localhost:5000/parcels', finalData);
+      console.log("Saved to DB:", response.data);
+      toast.success('Parcel added successfully!');
+      reset();
+    } catch (error) {
+      console.error("Error saving parcel:", error.response?.data || error.message);
+      toast.error('Failed to add parcel!');
+    }
+  };
+
+  // Show breakdown with Swal popup
   const showPricingBreakdown = (data, totalCost) => {
     const isSameCity = data.senderServiceCenter === data.receiverServiceCenter;
     const weight = parseFloat(data.parcelWeight || 0);
@@ -76,23 +90,30 @@ export default function AddParcelForm() {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        handleConfirm();
+        handleConfirm(data);
       } else {
         toast('You can now edit the parcel info.');
       }
     });
   };
 
-  const handleConfirm = () => {
-    const finalData = {
-      ...parcelData,
-      creation_date: new Date().toISOString()
+  // On form submit
+  const onSubmit = (data) => {
+    const deliveryCost = calculateCost(data);
+
+    // Add price to data sent to backend
+    const enrichedData = {
+      ...data,
+      price: deliveryCost,
+      payment_status: 'unpaid',
+      creation_date: new Date().toISOString(),
+      userEmail: user?.email || 'unknown'
     };
-    console.log("Saved to DB:", finalData);
-    toast.success('Parcel added successfully!');
-    reset();
+
+    showPricingBreakdown(enrichedData, deliveryCost);
   };
 
+  // When sender region changes, update sender service centers dropdown
   const handleSenderRegionChange = (e) => {
     const region = e.target.value;
     const filtered = locationData.filter(item => item.region === region);
@@ -100,18 +121,12 @@ export default function AddParcelForm() {
     setValue("senderServiceCenter", "");
   };
 
+  // When receiver region changes, update receiver service centers dropdown
   const handleReceiverRegionChange = (e) => {
     const region = e.target.value;
     const filtered = locationData.filter(item => item.region === region);
     setReceiverDistricts(filtered);
     setValue("receiverServiceCenter", "");
-  };
-
-  const onSubmit = data => {
-    const deliveryCost = calculateCost(data);
-    setCost(deliveryCost);
-    setParcelData(data);
-    showPricingBreakdown(data, deliveryCost);
   };
 
   return (

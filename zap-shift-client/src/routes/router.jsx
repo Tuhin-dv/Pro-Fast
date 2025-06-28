@@ -11,6 +11,8 @@ import AuthLayout from "../AuthLayout/AuthLayout";
 import Login from "../authentication/Login";
 import Register from "../authentication/Register";
 import AddParcelForm from "../pages/AddParcelForm";
+import DashboardLayout from "../dashboardLayout/DashboardLayout";
+import MyParcels from "../pages/Dashboard/MyParcels";
 
 export const router = createBrowserRouter([
  {
@@ -63,6 +65,16 @@ export const router = createBrowserRouter([
             path: '/register',
             Component: Register
         }
+    ]
+ },
+ {
+    path : '/dashboard',
+    Component: DashboardLayout,
+    children:[
+       {
+        path: 'myparcels',
+        Component: MyParcels
+       }
     ]
  }
    
